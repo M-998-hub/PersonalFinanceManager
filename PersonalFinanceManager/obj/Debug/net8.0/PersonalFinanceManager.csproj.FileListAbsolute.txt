@@ -1,0 +1,14 @@
+F:\projects\PersonalFinanceManager\PersonalFinanceManager\bin\Debug\net8.0\PersonalFinanceManager.exe
+F:\projects\PersonalFinanceManager\PersonalFinanceManager\bin\Debug\net8.0\PersonalFinanceManager.deps.json
+F:\projects\PersonalFinanceManager\PersonalFinanceManager\bin\Debug\net8.0\PersonalFinanceManager.runtimeconfig.json
+F:\projects\PersonalFinanceManager\PersonalFinanceManager\bin\Debug\net8.0\PersonalFinanceManager.dll
+F:\projects\PersonalFinanceManager\PersonalFinanceManager\bin\Debug\net8.0\PersonalFinanceManager.pdb
+F:\projects\PersonalFinanceManager\PersonalFinanceManager\obj\Debug\net8.0\PersonalFinanceManager.GeneratedMSBuildEditorConfig.editorconfig
+F:\projects\PersonalFinanceManager\PersonalFinanceManager\obj\Debug\net8.0\PersonalFinanceManager.AssemblyInfoInputs.cache
+F:\projects\PersonalFinanceManager\PersonalFinanceManager\obj\Debug\net8.0\PersonalFinanceManager.AssemblyInfo.cs
+F:\projects\PersonalFinanceManager\PersonalFinanceManager\obj\Debug\net8.0\PersonalFinanceManager.csproj.CoreCompileInputs.cache
+F:\projects\PersonalFinanceManager\PersonalFinanceManager\obj\Debug\net8.0\PersonalFinanceManager.dll
+F:\projects\PersonalFinanceManager\PersonalFinanceManager\obj\Debug\net8.0\refint\PersonalFinanceManager.dll
+F:\projects\PersonalFinanceManager\PersonalFinanceManager\obj\Debug\net8.0\PersonalFinanceManager.pdb
+F:\projects\PersonalFinanceManager\PersonalFinanceManager\obj\Debug\net8.0\PersonalFinanceManager.genruntimeconfig.cache
+F:\projects\PersonalFinanceManager\PersonalFinanceManager\obj\Debug\net8.0\ref\PersonalFinanceManager.dll
