@@ -1,20 +1,30 @@
 using System.Collections.Generic;
 using PersonalFinanceManager.Models;
+using System;
 
 namespace PersonalFinanceManager.Data
 {
     public interface IDataRepository
     {
-        // 数据持久化操作
+        #region 基础CRUD操作
         void AddTransaction(Transaction transaction);
-        void DeleteTransaction(int id);
         IEnumerable<Transaction> GetAllTransactions();
+        void SaveTransactions(IEnumerable<Transaction> transactions);
+        void DeleteTransaction(int id);
+        void UpdateTransaction(Transaction updatedTransaction);
+        #endregion
+
+        #region 基础查询
         IEnumerable<Transaction> GetTransactionsByCategory(string category);
         IEnumerable<Transaction> GetTransactionsByDate(System.DateTime start, System.DateTime end);
-        
-        // 预算操作
+        IEnumerable<Transaction> GetTransactionsByType(TransactionType type);
+        #endregion
+
+        #region 预算管理
         void SaveBudget(Budget budget);
-        Budget GetBudget(string category);
+        Budget? GetBudget(string category);
         IEnumerable<Budget> GetAllBudgets();
+        void DeleteBudget(string category);
+        #endregion
     }
 }

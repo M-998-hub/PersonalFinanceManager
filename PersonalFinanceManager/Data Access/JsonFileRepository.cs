@@ -2,6 +2,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 using PersonalFinanceManager.Models;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
 
 namespace PersonalFinanceManager.Data
 {
@@ -11,15 +16,15 @@ namespace PersonalFinanceManager.Data
         private readonly string _transactionsFile = "DataFiles/transactions.json";
         private readonly string _budgetsFile = "DataFiles/budgets.json";
 
+        // 确保数据目录存在
         public JsonFileRepository()
         {
-            // 确保数据目录存在
             if (!Directory.Exists(_dataDirectory))
             {
                 Directory.CreateDirectory(_dataDirectory);
             }
         }
-        
+
         // 具体的数据存储实现
         public void AddTransaction(Transaction transaction)
         {
@@ -41,7 +46,6 @@ namespace PersonalFinanceManager.Data
             // 保存到文件
             SaveTransactionsToFile(transactions);
         }
-
         public void DeleteTransaction(int id)
         {
             var transactions = GetAllTransactions().ToList();
@@ -49,10 +53,36 @@ namespace PersonalFinanceManager.Data
             if (transactionToRemove != null)
             {
                 transactions.Remove(transactionToRemove);
-                SaveTransactionsToFile(transactions);
+                SaveTransactions(transactions);
+                Console.WriteLine($"✅ 已删除交易: {transactionToRemove.Description}");
+            }
+            else
+            {
+                throw new ArgumentException($"未找到ID为 {id} 的交易");
             }
         }
+        public void UpdateTransaction(Transaction updatedTransaction)
+        {
+            var transactions = GetAllTransactions().ToList();
+            var existingTransaction = transactions.FirstOrDefault(t => t.Id == updatedTransaction.Id);
 
+            if (existingTransaction != null)
+            {
+                // 更新交易信息
+                existingTransaction.Amount = updatedTransaction.Amount;
+                existingTransaction.Category = updatedTransaction.Category;
+                existingTransaction.Description = updatedTransaction.Description;
+                existingTransaction.Type = updatedTransaction.Type;
+                existingTransaction.Date = DateTime.Now; // 更新修改时间
+
+                SaveTransactions(transactions);
+            }
+            else
+            {
+                throw new ArgumentException($"未找到ID为 {updatedTransaction.Id} 的交易");
+            }
+        }
+        // 具体的JSON文件读取实现
         public IEnumerable<Transaction> GetAllTransactions()
         {
             if (!File.Exists(_transactionsFile))
@@ -68,18 +98,25 @@ namespace PersonalFinanceManager.Data
 
             return JsonSerializer.Deserialize<List<Transaction>>(json) ?? new List<Transaction>();
         }
-        
+
         public IEnumerable<Transaction> GetTransactionsByCategory(string category)
         {
             var transactions = GetAllTransactions();
             return transactions.Where(t => t.Category == category).ToList();
         }
+
         public IEnumerable<Transaction> GetTransactionsByDate(System.DateTime start, System.DateTime end)
         {
             var transactions = GetAllTransactions();
             return transactions.Where(t => t.Date >= start && t.Date <= end).ToList();
         }
-        
+
+        public IEnumerable<Transaction> GetTransactionsByType(TransactionType type)
+        {
+            var transactions = GetAllTransactions();
+            return transactions.Where(t => t.Type == type).OrderByDescending(t => t.Date);
+        }
+
         public void SaveBudget(Budget budget)
         {
             var budgets = GetAllBudgets().ToList();
@@ -93,8 +130,13 @@ namespace PersonalFinanceManager.Data
             budgets.Add(budget);
             SaveBudgetToFile(budgets);
         }
-        
-        public Budget GetBudget(string category)
+
+        public void SaveTransactions(IEnumerable<Transaction> transactions)
+        {
+            SaveTransactionsToFile(transactions.ToList());
+        }
+
+        public Budget? GetBudget(string category)
         {
             var budgets = GetAllBudgets();
             return budgets.FirstOrDefault(b => b.Category == category) ?? new Budget();
@@ -107,13 +149,27 @@ namespace PersonalFinanceManager.Data
                 return new List<Budget>();
             }
 
-            var json = File.ReadAllText(_budgetsFile);
-            if (string.IsNullOrEmpty(json))
+            try
+            {
+                var json = File.ReadAllText(_budgetsFile);
+                return JsonSerializer.Deserialize<List<Budget>>(json) ?? new List<Budget>();
+            }
+            catch (Exception)
             {
                 return new List<Budget>();
             }
+        }
 
-            return JsonSerializer.Deserialize<List<Budget>>(json) ?? new List<Budget>();
+        public void DeleteBudget(string category)
+        {
+            var budgets = GetAllBudgets().ToList();
+            var budgetToRemove = budgets.FirstOrDefault(b => b.Category == category);
+
+            if (budgetToRemove != null)
+            {
+                budgets.Remove(budgetToRemove);
+                SaveBudgetToFile(budgets);
+            }
         }
 
         private void SaveTransactionsToFile(List<Transaction> transactions)
@@ -122,7 +178,7 @@ namespace PersonalFinanceManager.Data
             var json = JsonSerializer.Serialize(transactions, options);
             File.WriteAllText(_transactionsFile, json);
         }
-        
+
         private void SaveBudgetToFile(List<Budget> budgets)
         {
             var options = new JsonSerializerOptions { WriteIndented = true };

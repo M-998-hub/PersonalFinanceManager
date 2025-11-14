@@ -12,3 +12,4 @@ F:\projects\PersonalFinanceManager\PersonalFinanceManager\obj\Debug\net8.0\refin
 F:\projects\PersonalFinanceManager\PersonalFinanceManager\obj\Debug\net8.0\PersonalFinanceManager.pdb
 F:\projects\PersonalFinanceManager\PersonalFinanceManager\obj\Debug\net8.0\PersonalFinanceManager.genruntimeconfig.cache
 F:\projects\PersonalFinanceManager\PersonalFinanceManager\obj\Debug\net8.0\ref\PersonalFinanceManager.dll
+f:\projects\PersonalFinanceManager\PersonalFinanceManager\obj\Debug\net8.0\PersonalFinanceManager.sourcelink.json

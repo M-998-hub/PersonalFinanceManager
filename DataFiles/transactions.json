@@ -1,10 +1,42 @@
 [
   {
     "Id": 1,
-    "Date": "2025-11-08T16:14:50.3533701+08:00",
+    "Date": "2025-11-11T14:29:28.1141744+08:00",
     "Amount": 100,
     "Category": "\u65E5\u5E38",
     "Description": "123",
     "Type": 0
+  },
+  {
+    "Id": 2,
+    "Date": "2025-11-11T15:10:16.5323992+08:00",
+    "Amount": 2,
+    "Category": "\u652F\u51FA",
+    "Description": "321",
+    "Type": 1
+  },
+  {
+    "Id": 3,
+    "Date": "2025-11-11T15:29:31.4777747+08:00",
+    "Amount": 1000,
+    "Category": "\u751F\u6D3B",
+    "Description": "ss",
+    "Type": 0
+  },
+  {
+    "Id": 4,
+    "Date": "2025-11-13T19:39:19.9087845+08:00",
+    "Amount": 3000,
+    "Category": "\u5A31\u4E50",
+    "Description": "543",
+    "Type": 0
+  },
+  {
+    "Id": 5,
+    "Date": "2025-11-14T15:00:44.3151428+08:00",
+    "Amount": 801,
+    "Category": "\u751F\u6D3B",
+    "Description": "123",
+    "Type": 1
   }
 ]
