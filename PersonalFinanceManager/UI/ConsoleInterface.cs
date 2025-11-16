@@ -444,7 +444,6 @@ namespace PersonalFinanceManager.UI
                 if (!allTransactions.Any())
                 {
                     ShowWarningMessage("📭 当前没有交易记录可编辑");
-                    WaitForAnyKey();
                     return;
                 }
 
@@ -481,19 +480,16 @@ namespace PersonalFinanceManager.UI
                     else
                     {
                         ShowErrorMessage($"❌ 未找到ID为 {transactionId} 的交易");
-                        WaitForAnyKey();
                     }
                 }
                 else
                 {
                     ShowErrorMessage("❌ 请输入有效的交易ID或返回指令");
-                    WaitForAnyKey();
                 }
             }
             catch (Exception ex)
             {
                 ShowErrorMessage($"❌ 编辑失败: {ex.Message}");
-                WaitForAnyKey();
             }
         }
         private void EditTransactionDetails(Transaction transaction)
@@ -547,7 +543,6 @@ namespace PersonalFinanceManager.UI
                 if (!allTransactions.Any())
                 {
                     ShowWarningMessage("📭 当前没有交易记录可删除");
-                    WaitForAnyKey();
                     return;
                 }
 
@@ -581,7 +576,6 @@ namespace PersonalFinanceManager.UI
                     if (transactionToDelete == null)
                     {
                         ShowErrorMessage($"❌ 未找到ID为 {transactionId} 的交易");
-                        WaitForAnyKey();
                         return;
                     }
 
@@ -598,8 +592,7 @@ namespace PersonalFinanceManager.UI
                     if (ConfirmAction($"确定要删除这条交易吗？"))
                     {
                         _manager.DeleteTransaction(transactionId);
-                        ShowSuccessMessage("✅ 交易删除成功！");
-                        WaitForAnyKey();
+                        ShowSuccessMessage("交易删除成功！");
                     }
                     else
                     {
@@ -609,13 +602,11 @@ namespace PersonalFinanceManager.UI
                 else
                 {
                     ShowErrorMessage("❌ 请输入有效的交易ID或返回指令");
-                    WaitForAnyKey();
                 }
             }
             catch (Exception ex)
             {
                 ShowErrorMessage($"❌ 删除失败: {ex.Message}");
-                WaitForAnyKey();
             }
         }
         #endregion

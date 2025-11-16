@@ -32,7 +32,7 @@ namespace PersonalFinanceManager.Services
         public IEnumerable<Transaction> GetTransactionsByDate(DateTime start, DateTime end)
         {
             return _repository.GetAllTransactions()
-                             .Where(t => t.Date >= start && t.Date <= end)
+                             .Where(t => t.Date.Date >= start.Date && t.Date.Date <= end.Date)
                              .OrderByDescending(t => t.Date);
         }
         public IEnumerable<Transaction> GetTransactionsByType(TransactionType type)
@@ -152,9 +152,9 @@ namespace PersonalFinanceManager.Services
             var transactions = _repository.GetAllTransactions();
 
             if (startDate.HasValue)
-                transactions = transactions.Where(t => t.Date >= startDate.Value);
+                transactions = transactions.Where(t => t.Date.Date >= startDate.Value);
             if (endDate.HasValue)
-                transactions = transactions.Where(t => t.Date <= endDate.Value);
+                transactions = transactions.Where(t => t.Date.Date <= endDate.Value);
 
             return transactions
                 .GroupBy(t => t.Category)

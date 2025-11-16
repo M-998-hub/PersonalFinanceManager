@@ -12,6 +12,9 @@ namespace PersonalFinanceManager.Data
         void SaveTransactions(IEnumerable<Transaction> transactions);
         void DeleteTransaction(int id);
         void UpdateTransaction(Transaction updatedTransaction);
+        public void ExportTransactionsToFile(List<Transaction> transactions, string filePath, string format = "json");
+        public void BackupTransactions();
+        public bool RestoreFromBackup(string backupFilePath);
         #endregion
 
         #region 基础查询

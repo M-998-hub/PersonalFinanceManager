@@ -6,19 +6,27 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
+using System.Text.Json;
 
 
 namespace PersonalFinanceManager.Data
 {
     public class JsonFileRepository : IDataRepository
     {
-        private readonly string _dataDirectory = "DataFiles";
-        private readonly string _transactionsFile = "DataFiles/transactions.json";
-        private readonly string _budgetsFile = "DataFiles/budgets.json";
+        private readonly string _dataDirectory;
+        private readonly string _transactionsFile;
+        private readonly string _budgetsFile;
 
-        // 确保数据目录存在
         public JsonFileRepository()
         {
+            // 使用应用程序基目录
+            var appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            _dataDirectory = Path.Combine(appDirectory, "DataFiles");
+            _transactionsFile = Path.Combine(_dataDirectory, "transactions.json");
+            _budgetsFile = Path.Combine(_dataDirectory, "budgets.json");
+
+            // 确保数据目录存在
             if (!Directory.Exists(_dataDirectory))
             {
                 Directory.CreateDirectory(_dataDirectory);
@@ -108,7 +116,7 @@ namespace PersonalFinanceManager.Data
         public IEnumerable<Transaction> GetTransactionsByDate(System.DateTime start, System.DateTime end)
         {
             var transactions = GetAllTransactions();
-            return transactions.Where(t => t.Date >= start && t.Date <= end).ToList();
+            return transactions.Where(t => t.Date.Date >= start.Date && t.Date.Date <= end.Date).ToList();
         }
 
         public IEnumerable<Transaction> GetTransactionsByType(TransactionType type)
@@ -184,6 +192,46 @@ namespace PersonalFinanceManager.Data
             var options = new JsonSerializerOptions { WriteIndented = true };
             var json = JsonSerializer.Serialize(budgets, options);
             File.WriteAllText(_budgetsFile, json);
+        }
+
+        public void ExportTransactionsToFile(List<Transaction> transactions, string filePath, string format = "json")
+        {
+            var options = new JsonSerializerOptions { WriteIndented = true };
+
+            if (format.ToLower() == "json")
+            {
+                var json = JsonSerializer.Serialize(transactions, options);
+                File.WriteAllText(filePath, json);
+            }
+            else if (format.ToLower() == "csv")
+            {
+                var csv = new StringBuilder();
+                csv.AppendLine("ID,Date,Type,Amount,Category,Description");
+                foreach (var transaction in transactions)
+                {
+                    csv.AppendLine($"{transaction.Id},{transaction.Date:yyyy-MM-dd HH:mm},{transaction.Type},{transaction.Amount},{transaction.Category},{transaction.Description}");
+                }
+                File.WriteAllText(filePath, csv.ToString());
+            }
+        }
+
+        public void BackupTransactions()
+        {
+            string backupDir = "Backups";
+            if (!Directory.Exists(backupDir))
+                Directory.CreateDirectory(backupDir);
+
+            string backupFile = Path.Combine(backupDir, $"transactions_backup_{DateTime.Now:yyyyMMdd_HHmmss}.json");
+            File.Copy(_transactionsFile, backupFile, true);
+        }
+
+        public bool RestoreFromBackup(string backupFilePath)
+        {
+            if (!File.Exists(backupFilePath))
+                return false;
+
+            File.Copy(backupFilePath, _transactionsFile, true);
+            return true;
         }
     }
 }
