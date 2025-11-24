@@ -12,11 +12,17 @@ namespace PersonalFinanceManager.Services
     {
         private readonly IDataRepository _repository;
 
+        
+        // 提供两种创建方式
+        public FinanceManager() : this(new SqliteRepository()) // 默认用数据库
+        {
+        }
+
         public FinanceManager(IDataRepository repository)
         {
             _repository = repository;
         }
-
+        
 
         #region 数据查询(Data-Query)
         public IEnumerable<Transaction> GetAllTransactions()

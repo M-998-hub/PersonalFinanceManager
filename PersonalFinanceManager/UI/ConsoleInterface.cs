@@ -1,9 +1,10 @@
 using PersonalFinanceManager.Services;
 using System;
-using PersonalFinanceManager.Models;  // 添加这行
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;  // 为了 Thread.Sleep
+using PersonalFinanceManager.Data;
+using PersonalFinanceManager.Models;
 
 namespace PersonalFinanceManager.UI
 {
@@ -14,7 +15,14 @@ namespace PersonalFinanceManager.UI
 
         public ConsoleInterface(FinanceManager manager)
         {
-            _manager = manager;
+            // 默认使用数据库，但保留切换到JSON的能力
+            var useDatabase = true; // 可以通过配置控制
+
+            IDataRepository repository = useDatabase
+                ? new SqliteRepository()
+                : new JsonFileRepository();
+
+            _manager = new FinanceManager(repository);
             _isRunning = true;
         }
 
@@ -479,17 +487,17 @@ namespace PersonalFinanceManager.UI
                     }
                     else
                     {
-                        ShowErrorMessage($"❌ 未找到ID为 {transactionId} 的交易");
+                        ShowErrorMessage($"未找到ID为 {transactionId} 的交易");
                     }
                 }
                 else
                 {
-                    ShowErrorMessage("❌ 请输入有效的交易ID或返回指令");
+                    ShowErrorMessage("请输入有效的交易ID或返回指令");
                 }
             }
             catch (Exception ex)
             {
-                ShowErrorMessage($"❌ 编辑失败: {ex.Message}");
+                ShowErrorMessage($"编辑失败: {ex.Message}");
             }
         }
         private void EditTransactionDetails(Transaction transaction)
