@@ -1,0 +1,386 @@
+/* 报表统计页面样式 */
+
+/* 统计卡片 */
+.stat-card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 1rem;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.stat-card .stat-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.income-card {
+    background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+    color: white;
+}
+
+.expense-card {
+    background: linear-gradient(135deg, #F44336 0%, #C62828 100%);
+    color: white;
+}
+
+.balance-card {
+    background: linear-gradient(135deg, #2196F3 0%, #1565C0 100%);
+    color: white;
+}
+
+.monthly-card {
+    background: linear-gradient(135deg, #9C27B0 0%, #6A1B9A 100%);
+    color: white;
+}
+
+/* 报表类型切换按钮 */
+.btn-group .btn-outline-primary.active {
+    background-color: #0d6efd;
+    color: white;
+}
+
+.btn-group .btn-outline-primary {
+    border-radius: 6px;
+    margin-right: 5px;
+}
+
+/* 报表区域 */
+.report-section {
+    transition: opacity 0.3s ease;
+}
+
+/* 月度统计 */
+.monthly-stat {
+    padding: 20px;
+    border-radius: 10px;
+    background: #f8f9fa;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.monthly-stat:hover {
+    background: #e9ecef;
+    transform: scale(1.05);
+}
+
+.monthly-stat .stat-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.monthly-stat .stat-label {
+    font-size: 14px;
+    color: #6c757d;
+}
+
+/* 图表容器 */
+.chart-container {
+    position: relative;
+    height: 300px;
+    margin: 20px 0;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+/* 分类排名样式 */
+.category-rank-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 8px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+}
+
+.category-rank-item:hover {
+    background: #e9ecef;
+}
+
+.rank-number {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #6c757d;
+    color: white;
+    border-radius: 50%;
+    font-weight: 600;
+    margin-right: 12px;
+}
+
+.rank-number.top-1 {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+}
+
+.rank-number.top-2 {
+    background: linear-gradient(135deg, #C0C0C0 0%, #A0A0A0 100%);
+}
+
+.rank-number.top-3 {
+    background: linear-gradient(135deg, #CD7F32 0%, #B56900 100%);
+}
+
+.category-info {
+    flex: 1;
+}
+
+.category-name {
+    font-weight: 500;
+    margin-bottom: 2px;
+}
+
+.category-amount {
+    font-size: 14px;
+    color: #6c757d;
+}
+
+.category-percentage {
+    font-weight: 600;
+    color: #495057;
+}
+
+/* 趋势表格 */
+#trendTable td,
+#categoryTable td {
+    vertical-align: middle;
+}
+
+.trend-indicator {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.trend-up {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.trend-down {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.trend-stable {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+/* 导出区域 */
+.export-history-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 8px;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.export-history-item:hover {
+    border-color: #0d6efd;
+    background-color: #f8f9fa;
+}
+
+.export-file-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e9ecef;
+    border-radius: 6px;
+    margin-right: 12px;
+    color: #6c757d;
+}
+
+.export-file-info {
+    flex: 1;
+}
+
+.export-file-name {
+    font-weight: 500;
+    margin-bottom: 2px;
+}
+
+.export-file-meta {
+    font-size: 12px;
+    color: #6c757d;
+}
+
+.export-download-btn {
+    background: none;
+    border: none;
+    color: #0d6efd;
+    cursor: pointer;
+}
+
+/* 自定义日期范围 */
+#customDateRange {
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .btn-group {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .btn-group .btn {
+        margin-bottom: 5px;
+        margin-right: 0;
+        width: 100%;
+    }
+
+    .chart-container {
+        height: 250px;
+    }
+
+    .monthly-stat .stat-value {
+        font-size: 20px;
+    }
+
+    .stat-card .stat-icon {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* 加载状态 */
+.loading-spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.loading-spinner .spinner-border {
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 1rem;
+}
+
+/* 空状态 */
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #6c757d;
+}
+
+.empty-state i {
+    font-size: 48px;
+    margin-bottom: 16px;
+    opacity: 0.3;
+}
+
+/* 打印样式 */
+@media print {
+    .btn-group,
+    .input-group,
+    .card-header .btn {
+        display: none !important;
+    }
+
+    .chart-container {
+        page-break-inside: avoid;
+    }
+
+    .stat-card {
+        break-inside: avoid;
+    }
+}
+
+/* 动画效果 */
+.fade-in {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 进度条 */
+.progress-sm {
+    height: 8px;
+    margin-top: 5px;
+}
+
+/* 导出按钮 */
+.btn-export {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-export:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+
+.btn-export:focus:not(:active)::after {
+    animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+    20% {
+        transform: scale(25, 25);
+        opacity: 0.3;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(40, 40);
+    }
+}

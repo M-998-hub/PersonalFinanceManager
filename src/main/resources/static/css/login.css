@@ -1,0 +1,242 @@
+/* login.css - 登录页面专用样式 */
+
+/* 登录页面容器 */
+.login-page {
+    background: var(--gradient-primary);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-xl);
+}
+
+.login-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* 登录卡片 */
+.login-card {
+    background: var(--white);
+    border-radius: var(--border-radius-xl);
+    box-shadow: var(--shadow-xl);
+    overflow: hidden;
+}
+
+.login-header {
+    background: linear-gradient(to right, var(--primary-color), var(--primary-dark));
+    color: var(--white);
+    padding: var(--spacing-xl);
+    text-align: center;
+}
+
+.login-header h1 {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    font-size: var(--font-size-xxl);
+}
+
+.login-header p {
+    opacity: 0.9;
+    margin-top: var(--spacing-sm);
+    font-size: var(--font-size-sm);
+}
+
+/* 登录表单 */
+.login-form {
+    padding: var(--spacing-xxl);
+}
+
+.login-form .form-group {
+    margin-bottom: var(--spacing-lg);
+}
+
+.login-form .form-label {
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+    color: var(--dark-color);
+}
+
+.login-form .form-control {
+    border: 2px solid var(--light-dark);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: var(--font-size-base);
+    transition: all var(--transition-fast);
+}
+
+.login-form .form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(67, 97, 238, 0.25);
+}
+
+.login-form .input-group-text {
+    background: var(--light-color);
+    border: 2px solid var(--light-dark);
+    border-right: none;
+}
+
+/* 记住我和忘记密码 */
+.login-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.remember-me label {
+    font-size: var(--font-size-sm);
+    color: var(--dark-light);
+    cursor: pointer;
+}
+
+.forgot-password {
+    font-size: var(--font-size-sm);
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.forgot-password:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+/* 登录按钮 */
+.login-btn {
+    width: 100%;
+    padding: var(--spacing-md);
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    border-radius: var(--border-radius-lg);
+    transition: all var(--transition-fast);
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* 注册引导 */
+.register-guide {
+    text-align: center;
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--light-dark);
+}
+
+.register-guide p {
+    margin-bottom: var(--spacing-sm);
+    color: var(--dark-light);
+}
+
+.register-guide a {
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.register-guide a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+/* 社交登录 */
+.social-login {
+    margin-top: var(--spacing-xl);
+    text-align: center;
+}
+
+.social-login p {
+    color: var(--dark-light);
+    margin-bottom: var(--spacing-md);
+    font-size: var(--font-size-sm);
+}
+
+.social-buttons {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--border-radius-circle);
+    border: 1px solid var(--light-dark);
+    background: var(--white);
+    color: var(--dark-color);
+    transition: all var(--transition-fast);
+}
+
+.social-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+    border-color: var(--primary-light);
+}
+
+.social-btn.wechat {
+    color: #07C160;
+}
+
+.social-btn.alipay {
+    color: #1677FF;
+}
+
+.social-btn.google {
+    color: #EA4335;
+}
+
+/* 错误状态 */
+.login-error {
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* 响应式调整 */
+/* 在大屏幕上更宽 */
+@media (min-width: 1200px) {
+    .login-container {
+        max-width: 550px;
+    }
+}
+
+/* 在小屏幕上保持合适宽度 */
+@media (max-width: 576px) {
+    .login-container {
+        max-width: 100%;
+        padding: 0 15px;
+    }
+    .login-page {
+        padding: var(--spacing-md);
+    }
+
+    .login-form {
+        padding: var(--spacing-xl);
+    }
+
+    .login-options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-sm);
+    }
+}

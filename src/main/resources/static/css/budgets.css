@@ -1,0 +1,292 @@
+/* 预算管理页面样式 */
+
+/* 预算卡片样式 */
+.stat-card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card .stat-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.stat-card.total-budget-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.stat-card.total-spent-card {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+}
+
+.stat-card.overall-usage-card {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+}
+
+/* 进度条样式 */
+.budget-progress {
+    height: 8px;
+    border-radius: 4px;
+    background-color: #e9ecef;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.budget-progress-bar {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+/* 状态标签 */
+.budget-status {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.status-normal {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status-warning {
+    background-color: #fff3cd;
+    color: #856404;
+    animation: pulse 2s infinite;
+}
+
+.status-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    animation: alert-pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+@keyframes alert-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.4); }
+    70% { box-shadow: 0 0 0 6px rgba(220, 53, 69, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0); }
+}
+
+/* 预算表格样式 */
+#budgetsTable table {
+    margin-bottom: 0;
+}
+
+#budgetsTable tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+#budgetsTable tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+#budgetsTable tbody tr.budget-row-alert {
+    background-color: rgba(255, 193, 7, 0.05);
+}
+
+#budgetsTable tbody tr.budget-row-danger {
+    background-color: rgba(220, 53, 69, 0.05);
+}
+
+/* 预算分类标签 */
+.budget-category-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    background-color: #e9ecef;
+    border-radius: 12px;
+    font-size: 12px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+/* 操作按钮样式 */
+.btn-budget-action {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    margin-left: 5px;
+}
+
+.btn-budget-edit {
+    background-color: rgba(13, 110, 253, 0.1);
+    color: #0d6efd;
+    border: 1px solid rgba(13, 110, 253, 0.2);
+}
+
+.btn-budget-edit:hover {
+    background-color: rgba(13, 110, 253, 0.2);
+}
+
+.btn-budget-delete {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+    border: 1px solid rgba(220, 53, 69, 0.2);
+}
+
+.btn-budget-delete:hover {
+    background-color: rgba(220, 53, 69, 0.2);
+}
+
+/* 预算详情卡片 */
+.budget-detail-card {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.budget-detail-card .progress {
+    height: 12px;
+}
+
+/* 模态框自定义样式 */
+#addBudgetModal .modal-content,
+#editBudgetModal .modal-content {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+#addBudgetModal .modal-header,
+#editBudgetModal .modal-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 15px 15px 0 0;
+}
+
+#addBudgetModal .modal-header .btn-close,
+#editBudgetModal .modal-header .btn-close {
+    filter: invert(1);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .stat-card .stat-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .budget-progress {
+        margin-top: 5px;
+    }
+
+    #budgetsTable .btn-budget-action {
+        margin-top: 5px;
+        margin-left: 0;
+    }
+}
+
+/* 空状态样式 */
+.text-center.py-5 {
+    padding: 3rem 0;
+}
+
+.text-center.py-5 i {
+    opacity: 0.5;
+}
+
+/* 预算筛选器样式 */
+#viewType {
+    width: 150px;
+    border-radius: 20px;
+    border-color: #dee2e6;
+}
+
+/* 加载动画 */
+#loadingBudgets .spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+/* 表格单元格对齐 */
+#budgetsTable td {
+    vertical-align: middle;
+}
+
+#budgetsTable .text-end {
+    white-space: nowrap;
+}
+
+/* 预算金额样式 */
+.budget-amount {
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+}
+
+.remaining-amount {
+    color: #198754;
+    font-weight: 600;
+}
+
+.over-budget-amount {
+    color: #dc3545;
+    font-weight: 600;
+}
+
+/* 使用率颜色 */
+.usage-normal {
+    color: #198754;
+}
+
+.usage-warning {
+    color: #ffc107;
+}
+
+.usage-danger {
+    color: #dc3545;
+}
+
+/* 预警弹窗样式 */
+.budget-alert-toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1060;
+    min-width: 300px;
+    animation: slideInRight 0.3s ease;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* 月度选择器样式 */
+.month-selector {
+    max-width: 200px;
+}

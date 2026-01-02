@@ -1,0 +1,219 @@
+/* 注册页面专属样式 */
+body.register-page {
+    background: var(--gradient-primary);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-xl);
+}
+
+/* 主容器 */
+body.register-page main.auth-container.register-page-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-xl);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+/* 注册卡片 */
+.register-card {
+    background: var(--white);
+    border-radius: var(--border-radius-xl);
+    box-shadow: var(--shadow-xl);
+    overflow: hidden;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* 卡片头部 */
+.register-header {
+    background: linear-gradient(to right, var(--primary-color), var(--primary-dark));
+    color: var(--white);
+    padding: var(--spacing-xl);
+    text-align: center;
+}
+
+.register-header h1 {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    font-size: var(--font-size-xxl);
+}
+
+.register-header p {
+    opacity: 0.9;
+    margin-top: var(--spacing-sm);
+    margin-bottom: 0;
+}
+
+/* 卡片内容区域 */
+.register-body {
+    padding: var(--spacing-xxl);
+}
+
+/* 步骤指示器*/
+.step-indicator {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-xxl);
+    position: relative;
+}
+
+.step-indicator::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--light-dark);
+    z-index: 1;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    flex: 1;
+}
+
+.step-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--border-radius-circle);
+    background: var(--light-dark);
+    color: var(--dark-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-bottom: var(--spacing-sm);
+    border: 3px solid var(--white);
+    transition: all var(--transition-fast);
+}
+
+.step.active .step-circle {
+    background: var(--primary-color);
+    color: var(--white);
+    transform: scale(1.1);
+}
+
+.step-label {
+    font-size: var(--font-size-sm);
+    color: var(--dark-light);
+    text-align: center;
+    margin-top: var(--spacing-xs);
+}
+
+.step.active .step-label {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* 表单步骤 */
+.form-step {
+    display: none;
+}
+
+.form-step.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+/* 成功图标 */
+.success-icon {
+    font-size: 4rem;
+    color: var(--success-color);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* 动画 */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== 响应式设计 ===== */
+
+/* 平板设备 (992px以下) */
+@media (max-width: 992px) {
+    body.register-page main.auth-container.register-page-container {
+        max-width: 100%;
+        padding: var(--spacing-lg);
+    }
+
+    .register-card {
+        max-width: 800px;
+    }
+
+    .register-body {
+        padding: var(--spacing-xl);
+    }
+}
+
+/* 移动设备 (768px以下) */
+@media (max-width: 768px) {
+    body.register-page {
+        padding: var(--spacing-md);
+    }
+
+    body.register-page main.auth-container.register-page-container {
+        padding: var(--spacing-md);
+    }
+
+    .register-card {
+        max-width: 95%;
+        border-radius: var(--border-radius-lg);
+    }
+
+    .register-header {
+        padding: var(--spacing-lg);
+    }
+
+    .register-body {
+        padding: var(--spacing-lg);
+    }
+
+    .step-indicator {
+        margin-bottom: var(--spacing-xl);
+    }
+
+    .step-label {
+        font-size: 0.75rem;
+    }
+}
+
+/* 小手机 (576px以下) */
+@media (max-width: 576px) {
+    .register-card {
+        max-width: 100%;
+        border-radius: 0;
+    }
+
+    .register-header h1 {
+        font-size: var(--font-size-xl);
+        flex-direction: column;
+        gap: var(--spacing-xs);
+    }
+
+    .register-body {
+        padding: var(--spacing-md);
+    }
+
+    .step-circle {
+        width: 28px;
+        height: 28px;
+        font-size: 0.875rem;
+    }
+}
